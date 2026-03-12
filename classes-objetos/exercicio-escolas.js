@@ -64,7 +64,11 @@ const escola2 = new Senai(514, 'Santa Barbado d Oeste', 1980, 400);
 
 escola1.abrirEscola();
 escola1.dadosEscola();
-compararEscolas(escola1, escola2);
+
+
+escola1.fecharEscola();
+escola1.dadosEscola();
+
 
 
 
