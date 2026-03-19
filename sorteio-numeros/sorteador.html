@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteador de números</title>
+    <style>
+
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .sorteio{
+            
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            height: 100px;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sorteio">
+        <h1>Sorteio de Números</h1>
+    
+
+        <div class="sorteio__inputs">
+            <form class="sorteio__form">
+                <label for="min">Valor Mínimo:</label>
+                <input type="text" class="sorteio__input--min" name="min">
+
+                <label for="max">Valor Máximo</label>
+                <input type="text" class="sorteio__input--max" name="max">
+            
+        
+
+                <div class="sorteio__acoes">
+                    <input class="sorteio__botao--sortear" type="submit" value="Sortear">
+                    <input class="sorteio__botao--reset" type="reset" value="Novo Sorteio">
+                </div>
+            </form>
+        
+
+            <div class="sorteio__resultado">
+                <p class="sorteio__texto--resultado"></p>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Seleção dos elementos
+        const form = document.querySelector('.sorteio__form');
+        const inputMin = document.querySelector('.sorteio__input--min');
+        const inputMax = document.querySelector('.sorteio__input--max');
+        const resultado = document.querySelector('.sorteio__texto--resultado')
+        // console.log(form, inputMin, inputMax, resultado)
+
+        // Evento do formulário
+        form.addEventListener('submit', (event) => {
+            event.preventDefault() //controla o recarregamento
+
+            const min = inputMin.value.trim();
+            const max = inputMax.value.trim();
+
+            // Validação simples
+            if (min === '' || max === '') {
+                resultado.textContent = 'Preencha os dois campos.';
+                return;
+            }
+
+            const numeroMin = Number(min);
+            const numeroMax = Number(max);
+
+            if (isNaN(numeroMin) || isNaN(numeroMax)) {
+                resultado.textContent = 'Digite apenas números';
+                return;
+            }
+
+            if (numeroMin > numeroMax) {
+                resultado.textContent = 'O mínimo não pode ser maior que o máximo';
+                return;
+            }
+
+            // Lógica do sorteio (versão simplificado)
+            const numeroSorteado = Math.floor(Math.random() = (numeroMax - numeroMin + 1)) + numeroMin;
+
+            resultado.textContent = `Número sorteado: ${numeroSorteado}`;
+
+
+        });
+    </script>
+
+    
+</body>
+</html>
