@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteador de números</title>
+    <style>
+
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .sorteio{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 25px;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <div class="sorteio">
+        <h1>Sorteio de Números</h1>
+    
+
+        <div class="sorteio__inputs">
+            <form class="sorteio__form">
+                <label for="min">Valor Mínimo:</label>
+                <input type="text" class="sorteio__input--min" name="min">
+
+                <label for="max">Valor Máximo</label>
+                <input type="text" class="sorteio__input--max" name="max">
+            
+        
+
+                <div class="sorteio__acoes">
+                    <input class="sorteio__botao--sortear" type="submit" value="Sortear">
+                    <input class="sorteio__botao--reset" type="submit" value="Novo Sorteio">
+                </div>
+            </form>
+        
+
+            <div class="sorteio__resultado">
+                <p class="sorteio__texto--resultado"></p>
+            </div>
+
+        </div>
+    </div>
+
+    
+</body>
+</html>
