@@ -65,7 +65,7 @@ const atualizarHistorico = (lista, item, limite) => {
     lista.prepend(item);
 
     if (lista.children.length > limite) {
-        lista.removechild(lista.lastChild);
+        lista.removeChild(lista.lastChild);
     }
 };
 
