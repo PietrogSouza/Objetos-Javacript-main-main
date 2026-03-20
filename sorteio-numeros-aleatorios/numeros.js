@@ -12,7 +12,7 @@ const elementoNumero = document.querySelector('.area__numero');
 const listaNumeros = document.querySelector('.historico__lista')
 const botãoLimparHistorico = document.querySelector('.sorteador__limpar')
 
-const mensagem = document.querySelector('.area_mensagem')
+const mensagem = document.querySelector('.area__mensagem')
 
 
 
