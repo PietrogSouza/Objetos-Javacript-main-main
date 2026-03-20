@@ -37,5 +37,52 @@ const gerarNumeroAleatorio = (min, max) =>{
     let numeroAleatorio = Math.floor(Math.random() * (max - min + 1));
     numeroAleatorio += min;
     return numeroAleatorio;
+    
 }
+
+const atualizarTexto = (elemento, valor) => {
+    elemento.textContent = valor;
+};
+
+const criarItemHistorico = (numero) => {
+    const li = document.createElement('li');
+    li.textContent = numero;
+
+    li.addEventListener('click', () => {
+        navigator.clipboard.writeText(numero);
+        alert('Item copiado!');
+    });
+
+    return li
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
