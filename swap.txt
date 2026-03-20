@@ -1,0 +1,6 @@
+Lógica Validação
+
+if (min > max){
+    alert('O mínimo não pode ser maior que o máximo');
+    return;
+}

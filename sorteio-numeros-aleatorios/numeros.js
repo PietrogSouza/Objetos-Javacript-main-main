@@ -1,9 +1,18 @@
 // Variáveis globais
 const quantidadeNumerosRecentes = 5;
 
-const sliderMin = document.querySelector('.intervalo__slider--min')
-const sliderMax = document.querySelector('.intervalo__slider--max')
+const sliderMin = document.querySelector('.intervalo__slider--min');
+const sliderMax = document.querySelector('.intervalo__slider--max');
 // console.log(sliderMin, sliderMax)
+
+// Seção com o botão sortear e exibição do resultado
+const botaoSortear = document.querySelector('.area__button');
+const elementoNumero = document.querySelector('.area__numero');
+
+const listaNumeros = document.querySelector('.historico__lista')
+const botãoLimparHistorico = document.querySelector('.sorteador__limpar')
+
+const mensagem = document.querySelector('.area_mensagem')
 
 
 
