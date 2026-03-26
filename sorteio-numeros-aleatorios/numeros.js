@@ -14,6 +14,18 @@ const botãoLimparHistorico = document.querySelector('.sorteador__limpar')
 
 const mensagem = document.querySelector('.area__mensagem')
 
+// Resolução do Desafio
+const validarIntervalo = () => {
+    if(sliderMin.value >= sliderMax.value){
+        sliderMax.value = sliderMin.value 
+        mensagem.textContent = 'O valor mínimo deve ser menor ou igual ao valor máximo'
+        atualizarValorSlider()
+        
+    } else{
+        atualizarValorSlider()
+        mensagem.textContent = ''
+    }
+};
 
 
 
@@ -27,8 +39,8 @@ const atualizarValorSlider = () =>{
     document.querySelector('.intervalo__valor--max').textContent = max;
 };
     // Evento para atualizar o valor em tempo real
-    sliderMin.addEventListener('input', atualizarValorSlider);
-    sliderMax.addEventListener('input', atualizarValorSlider)
+    sliderMin.addEventListener('input', validarIntervalo);
+    sliderMax.addEventListener('input', validarIntervalo);
 
 // Iniciarlizar interface com valores atuais
 atualizarValorSlider();
@@ -82,11 +94,6 @@ botaoSortear.addEventListener('click', () => {
     const min = Number(sliderMin.value);
     const max = Number(sliderMax.value);
 
-    if (min > max){
-        mensagem.textContent = 'O valor mínimo deve ser menor ou igual ao valor máximo'
-        return;
-    }
-
     mensagem.textContent = '';
 
     const numeroSorteado = gerarNumeroAleatorio(min, max);
@@ -98,6 +105,22 @@ botaoSortear.addEventListener('click', () => {
 });
 
 botãoLimparHistorico.addEventListener('click', limparHistorico);
+
+
+const validarInput = () => {
+    if (min > max){
+        mensagem.textContent = 'O valor mínimo deve ser menor ou igual ao valor máximo'
+        return;
+    }
+}
+
+
+        
+
+
+
+    sliderMin.addEventListener('input', validarIntervalo);
+    sliderMax.addEventListener('input', validarIntervalo);
 
 
 
