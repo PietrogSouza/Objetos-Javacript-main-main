@@ -47,10 +47,10 @@ const getSaudacao = () => {
 Utiliza vários métodos do objeto Date para obter os componentes da data */
 const formatarDataHora = () => {
 
-/** Cria um objeto com a data e hora atual */
+  /** Cria um objeto com a data e hora atual */
   const agora = new Date();
 
-/** Array com os nomes dos dias da semana */
+  /** Array com os nomes dos dias da semana */
   const diasSemana = [
     'Domingo',
     'Segunda-feira',
@@ -60,25 +60,32 @@ const formatarDataHora = () => {
     'Sexta-feira',
     'Sábado'
   ];
-/** Obtém o dia da semana */
+  /** Obtém o dia da semana */
   const diaSemana = diasSemana[agora.getDay()];
 
-/** Dados da data */
+  /** Dados da data */
+  const dia = agora.getDate().toString().padStart(2, '0');
+  const mes = (agora.getMonth() + 1).toString().padStart(2, '0');
+  const ano = agora.getFullYear();
 
-}
-/**
- * Hora como número (para lógica, se necessário no futuro)
- * Aqui usamos apenas para formatação
- */
+  /**
+   * Hora como número (para lógica, se necessário no futuro)
+   * Aqui usamos apenas para formatação
+   */
+  const hora = agora.getHours().toString().padStart(2, '0');
+  const minuto = agora.getMinutes().toString().padStart(2, '0');
+  const segundo = agora.getSeconds().toString().padStart(2, '0');
 
-
-/** Retorna apenas a data e hora (sem saudação) */
+  /** Retorna apenas a data e hora (sem saudação) */
+  return `${diaSemana}, ${dia}/${mes}/${ano} ${hora}:${minuto}:${segundo}`;
+};
 
 
 
 /* Função que atualiza o cabeçalho com a saudação e a data/hora atual */
 
 /* Atualizar header a cada segundo */
+
 
 
 /* Inicializar header */
