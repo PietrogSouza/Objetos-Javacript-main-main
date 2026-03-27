@@ -121,34 +121,3 @@ const validarInput = () => {
 
     sliderMin.addEventListener('input', validarIntervalo);
     sliderMax.addEventListener('input', validarIntervalo);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

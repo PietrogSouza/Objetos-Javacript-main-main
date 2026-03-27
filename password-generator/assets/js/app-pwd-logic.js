@@ -86,7 +86,7 @@ const formatarDataHora = () => {
 const atualizarHeader = () => {
   welcomeElement.textContent = `${getSaudacao()}!`;
   datetimeElement.textContent = formatarDataHora();
-  
+
 };
 
 /* Atualizar header a cada segundo */
@@ -107,61 +107,85 @@ sliderElement.addEventListener('input', (e) => {
 /* Função principal para gerar a senha */
 const generatePassword = () => {
 
-
-
-// String que armazenará todos os caracteres possíveis para a senha
+  let selectedCharset = '';   // String que armazenará todos os caracteres possíveis para a senha
 
   /* Obter os checkboxes selecionados */
-
-
-
+  const uppercaseChecked = document.querySelector('.uppercase-check').checked
+  const lowercaseChecked = document.querySelector('.lowercase-check').checked
+  const numbersChecked = document.querySelector('.numbers-check').checked
+  const specialChecked = document.querySelector('.special-check').checked
 
   /* Construir o charset baseado nas opções selecionadas */
- 
+  if (uppercaseChecked) selectedCharset += charserts.uppercase;
+  if (lowercaseChecked) selectedCharset += charserts.lowercase;
+  if (numbersChecked) selectedCharset += charserts.numbers;
+  if (specialChecked) selectedCharset += charserts.special;
+
 
   /* Se nenhuma opção estiver selecionada, selecionar todas */
- 
+  if (!selectedCharset) {
+    selectedCharset = Object.values(charserts).join('');
+    document.querySelector('.uppercase-check').checked = true;
+    document.querySelector('.lowercase-check').checked = true;
+    document.querySelector('.numbers-check').checked = true;
+    document.querySelector('.special-check').checked = true;
+  }
+
 
   // Inicializa uma string vazia para armazenar a senha gerada
- 
+  let pass = '';
+
 
 
   /* Loop que itera pelo número de caracteres definido no slider
  Usa o operador de incremento (++) para aumentar o contador */
 
-  
+  for (let i = 0; i < sliderElement.value; ++i) {
     /* Adiciona um caractere aleatório à senha:
     1. Math.random() gera um número decimal entre 0 e 1
     2. Multiplicado pelo comprimento do charset para obter um índice válido
     3. Math.floor() arredonda para baixo para obter um índice inteiro
     4. charAt() retorna o caractere na posição do índice calculado */
 
-  
+    pass += selectedCharset.charAt(Math.floor(Math.random() * selectedCharset.length))
+  }
+
+
   /* Remove a classe 'hide' para exibir o container da senha */
-  
+  containerPassword.classList.remove('hide')
 
   /* Insere a senha gerada no elemento HTML */
+  password.textContent = pass;
 
- 
-  /*  Armazena a senha atual na variável global para uso posterior (ex: copiar) */
-  
+
+  /* Armazena a senha atual na variável global para uso posterior (ex: copiar) */
+  novaSenha = pass;
+
   /* Gerenciamento do histórico de senhas:
   unshift() adiciona a nova senha no início do array */
- 
+  historicoSenhas.unshift(pass);
+
 
   /*  Limita o histórico a 3 senhas:
   Se o array tiver mais de 3 itens, pop() remove o último */
- 
-  /* Atualizar a lista de histórico na interface: */
- 
-    /* Remover a classe 'hide' para exibir o histórico */
-    
+  if (historicoSenhas.length > 3) {
+    historicoSenhas.pop();
+  }
 
-    /* Cria elementos <li> para cada senha no histórico:
-    1. map() transforma cada senha em um elemento HTML
-    2. join('') concatena todos os elementos em uma única string */
+  /* Atualizar a lista de histórico na interface: */
+  const historico = document.querySelector('.app-pwd__history');
+  if (historico) {
+
+  /* Remover a classe 'hide' para exibir o histórico */
+  historico.style.display = 'block';
+
+
+  /* Cria elementos <li> para cada senha no histórico:
+  1. map() transforma cada senha em um elemento HTML
+  2. join('') concatena todos os elementos em uma única string */
+  }
 };
-  
+
 
 /* Função para copiar a senha gerada para a área de transferência */
 const copyPassword = () => {
@@ -200,7 +224,7 @@ const clearData = () => {
   sizePassword.textContent = '8';
 
 };
-  
+
 
 /* Adiciona o event listener para o botão de limpar */
 clearButton.addEventListener('click', clearData);
