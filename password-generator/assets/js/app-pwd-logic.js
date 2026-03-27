@@ -111,7 +111,7 @@ const generatePassword = () => {
 
   /* Obter os checkboxes selecionados */
   const uppercaseChecked = document.querySelector('.uppercase-check').checked
-  const lowercaseChecked = document.querySelector('.lowercase-check').checked
+  const lowercaseChecked = document.querySelector('.lower-check').checked
   const numbersChecked = document.querySelector('.numbers-check').checked
   const specialChecked = document.querySelector('.special-check').checked
 
@@ -126,7 +126,7 @@ const generatePassword = () => {
   if (!selectedCharset) {
     selectedCharset = Object.values(charserts).join('');
     document.querySelector('.uppercase-check').checked = true;
-    document.querySelector('.lowercase-check').checked = true;
+    document.querySelector('.lower-check').checked = true;
     document.querySelector('.numbers-check').checked = true;
     document.querySelector('.special-check').checked = true;
   }
@@ -177,12 +177,16 @@ const generatePassword = () => {
   if (historico) {
 
   /* Remover a classe 'hide' para exibir o histórico */
-  historico.style.display = 'block';
+    historico.style.display = 'block';
 
 
   /* Cria elementos <li> para cada senha no histórico:
   1. map() transforma cada senha em um elemento HTML
   2. join('') concatena todos os elementos em uma única string */
+    historico.querySelector('.app-pwd__history-list').innerHTML = historicoSenhas
+      .map(senha => `<li class="app-pwd__history-item">${senha}</li>`)
+      .join('');
+
   }
 };
 
