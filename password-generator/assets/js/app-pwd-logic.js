@@ -5,12 +5,12 @@ que corresponde ao seletor CSS especificado */
 
 const sliderElement = document.querySelector('.app-pwd__slider'); // Elemento do controle deslizante
 const buttonElement = document.querySelector('.app-pwd__button'); // Botão de gerar senha
-const clearButton = documento.querySelector('.app-pwd__button--clear'); //Botão para limpar o histórico de senhas
+const clearButton = document.querySelector('.app-pwd__button--clear'); //Botão para limpar o histórico de senhas
 const sizePassword = document.querySelector('.app-pwd__size'); // Elemento que mostra o tamanho da senha
 const password = document.querySelector('.app-pwd__output'); // Elemento que exibe a senha gerada
 const containerPassword = document.querySelector('.app-pwd__result'); // Container da senha gerada
 const welcomeElement = document.querySelector('.app-pwd__welcome'); // Elemento de saudação
-const datetimeElement = document.querySelector('.app-pwd__datatime') // Elemento de data e hora
+const datetimeElement = document.querySelector('.app-pwd__datetime') // Elemento de data e hora
 
 
 /* Objeto que contém os conjuntos de caracteres possíveis para a geração de senha
@@ -83,21 +83,31 @@ const formatarDataHora = () => {
 
 
 /* Função que atualiza o cabeçalho com a saudação e a data/hora atual */
+const atualizarHeader = () => {
+  welcomeElement.textContent = `${getSaudacao()}!`;
+  datetimeElement.textContent = formatarDataHora();
+  
+};
 
 /* Atualizar header a cada segundo */
-
-
+setInterval(atualizarHeader, 1000);
 
 /* Inicializar header */
-
+atualizarHeader();
 
 /* Exibe inicialmente o valor do slider*/
-
+sizePassword.textContent = sliderElement.value;
 
 /* Atualiza o valor exibido do tamanho da senha conforme o slider é movimentado */
+sliderElement.addEventListener('input', (e) => {
+  sizePassword.textContent = e.target.value;
+})
 
 
 /* Função principal para gerar a senha */
+const generatePassword = () => {
+
+
 
 // String que armazenará todos os caracteres possíveis para a senha
 
@@ -150,31 +160,47 @@ const formatarDataHora = () => {
     /* Cria elementos <li> para cada senha no histórico:
     1. map() transforma cada senha em um elemento HTML
     2. join('') concatena todos os elementos em uma única string */
-
+};
   
 
 /* Função para copiar a senha gerada para a área de transferência */
-
-  // Exibe um alerta de sucesso
- // Copia a senha usando a API Clipboard
-
+const copyPassword = () => {
+  alert('Senha copiada com sucesso!');  // Exibe um alerta de sucesso
+  navigator.clipboard.writeText(novaSenha);  // Copia a senha usando a API Clipboard
+};
 
 /* Adicionar os event listeners para os eventos de clique */
- // Gera nova senha
-  // Copia a senha
+buttonElement.addEventListener('click', generatePassword);  // Gera nova senha
+containerPassword.addEventListener('click', copyPassword);  // Copia a senha
+
 
 /* Função para limpar os dados e esconder os containers */
+const clearData = () => {
 
   // Limpa o histórico de senhas
- 
+  historicoSenhas = [];
+  novaSenha = '';
 
   /* Esconder os containers */
- 
+  containerPassword.classList.add('hide');
+  const historico = document.querySelector('.app-pwd__history');
+  if (historico) {
+    historico.style.display = 'none';
+  }
 
   /* Reseta os checkboxes para o estado inicial (marcados) */
+  document.querySelector('.uppercase-check').checked = true;
+  document.querySelector('.lowercase-check').checked = true;
+  document.querySelector('.numbers-check').checked = true;
+  document.querySelector('.special-check').checked = true;
 
 
   /* Reseta o slider para o valor inicial */
+  sliderElement.value = 8;
+  sizePassword.textContent = '8';
+
+};
   
 
 /* Adiciona o event listener para o botão de limpar */
+clearButton.addEventListener('click', clearData);
